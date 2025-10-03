@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://t5pq3g4ro7it"]
+
+[ext_resource type="Texture2D" uid="uid://jcmxmlyc0n6k" path="res://assets/ship1.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cnfv5samdoiwh" path="res://scripts/controlled.gd" id="1_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://2vxw38ow14rr" path="res://assets/shield.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://cvv22n6u0svi4" path="res://assets/flame.png" id="4_dqkch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 40.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_qhqgy")
+
+[node name="ShipArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipArea"]
+shape = SubResource("CircleShape2D_qhqgy")
+
+[node name="ShipSprite" type="Sprite2D" parent="ShipArea"]
+texture = ExtResource("1_3vyb7")
+
+[node name="ShieldSprite" type="Sprite2D" parent="ShipArea/ShipSprite"]
+position = Vector2(-1.0000001, -4)
+scale = Vector2(1.60769, 1.625)
+texture = ExtResource("2_g2els")
+
+[node name="Flame" type="Sprite2D" parent="ShipArea/ShipSprite"]
+position = Vector2(1.43051e-06, -32)
+rotation = 3.14159
+scale = Vector2(0.927079, 0.850276)
+texture = ExtResource("4_dqkch")
+
+[connection signal="area_entered" from="ShipArea" to="." method="_on_ship_area_area_entered"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjd6e8sj5oabo"]
+
+[ext_resource type="Texture2D" uid="uid://2sknje70h6j5" path="res://assets/background.jpg" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://t5pq3g4ro7it" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bjvnl0nlbnhtj" path="res://scenes/obstacle.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://b42bt27cit2k1" path="res://scripts/main.gd" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bqcaemlm5k2qq" path="res://scenes/enemy.tscn" id="5_tbgi4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("4_jyhfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(512, 384)
+texture = ExtResource("1_o5qli")
+
+[node name="Player" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(512, 416)
+
+[node name="Obstacle" parent="." instance=ExtResource("3_sugp2")]
+position = Vector2(304, 520)
+
+[node name="Enemy" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(48, 40)
+
+[node name="ShipLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
