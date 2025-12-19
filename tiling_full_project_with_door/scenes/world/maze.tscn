@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://br3yfq81rt812"]
+
+[ext_resource type="TileSet" uid="uid://dik11vif0iuyp" path="res://scenes/world/water_tile_set.tres" id="1_btcdm"]
+[ext_resource type="Script" uid="uid://dtqmml8q824n1" path="res://scenes/world/maze.gd" id="1_m7bd6"]
+[ext_resource type="TileSet" uid="uid://fk3ky13yyb2j" path="res://scenes/world/ground_tile_set.tres" id="2_m7bd6"]
+[ext_resource type="PackedScene" uid="uid://dugujnmnnx8y3" path="res://scenes/items/teleport.tscn" id="4_jh6gf"]
+[ext_resource type="PackedScene" uid="uid://duogvn558ah4t" path="res://scenes/world/apple.tscn" id="5_4enfp"]
+
+[node name="Maze" type="Node2D"]
+script = ExtResource("1_m7bd6")
+
+[node name="Water" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_btcdm")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("2_m7bd6")
+
+[node name="Teleport" parent="." instance=ExtResource("4_jh6gf")]
+position = Vector2(40.133545, 18.730064)
+destination = "meadow"
+
+[node name="Apple" parent="." instance=ExtResource("5_4enfp")]

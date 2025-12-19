@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://dugujnmnnx8y3"]
+
+[ext_resource type="Script" uid="uid://cqbw0k8ms5s1e" path="res://scenes/items/teleport.gd" id="1_3dq56"]
+[ext_resource type="Texture2D" uid="uid://i6pi1h2f7tet" path="res://assets/tilesets/Doors.png" id="1_ixurf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dq56"]
+atlas = ExtResource("1_ixurf")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdww1"]
+atlas = ExtResource("1_ixurf")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu7rl"]
+atlas = ExtResource("1_ixurf")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxihx"]
+atlas = ExtResource("1_ixurf")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah377"]
+atlas = ExtResource("1_ixurf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5k4jt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dq56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdww1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu7rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxihx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah377")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixurf"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dq56"]
+size = Vector2(20, 3)
+
+[node name="Teleport" type="Node2D"]
+script = ExtResource("1_3dq56")
+destination = "random_forest"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5k4jt")
+animation = &"open"
+frame_progress = 0.26936576
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_ixurf")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_3dq56")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

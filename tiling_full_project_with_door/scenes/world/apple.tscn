@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://duogvn558ah4t"]
+
+[ext_resource type="Script" uid="uid://co7mcvyna71k3" path="res://scenes/world/apple.gd" id="1_uoqxn"]
+[ext_resource type="Texture2D" uid="uid://byrpu75e61eg8" path="res://assets/objects/PixelApple.png" id="2_donxe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_460xs"]
+radius = 8.0
+height = 16.0
+
+[node name="Egg" type="Node2D"]
+script = ExtResource("1_uoqxn")
+
+[node name="PixelApple" type="Sprite2D" parent="."]
+scale = Vector2(0.055555556, 0.055555556)
+texture = ExtResource("2_donxe")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_460xs")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
